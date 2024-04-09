@@ -206,14 +206,13 @@ func injectRuntimeConfig(orig *NetworkConfig, rt *RuntimeConf) (*NetworkConfig, 
 }
 
 // ensure we have a usable exec if the CNIConfig was not given one
-func (c *CNIConfig) ensureExec() invoke.Exec {
+func (c *CNIConfig) ensureExec() {
 	if c.exec == nil {
 		c.exec = &invoke.DefaultExec{
 			RawExec:       &invoke.RawExec{Stderr: os.Stderr},
 			PluginDecoder: version.PluginDecoder{},
 		}
 	}
-	return c.exec
 }
 
 type cachedInfo struct {
